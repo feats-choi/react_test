@@ -15,7 +15,7 @@ REACT.TABLE_RENDER = {
 	},
 	setComponent:function(){
 		var _self = this;
-
+		//子コンポーネント
 		this.TableHeader = React.createClass({
 		  render: function() {
 		    var tableTitles = this.props.title.map(function(cName, i) {
@@ -35,7 +35,7 @@ REACT.TABLE_RENDER = {
 				);
 		  }
 		});
-
+		//子コンポーネント
 		this.TableBody = React.createClass({
 		  render: function() {
 		    var tableRows = this.props.data.map(function(person) {
@@ -55,11 +55,11 @@ REACT.TABLE_RENDER = {
 				);
 		  }
 		});
-
+		
 	},
 	combineComponent:function(){
 		var _self = this;
-
+		//親コンポーネント
 		this.DispTable = React.createClass({
 		  render: function() {
 		    return (
