@@ -11,12 +11,23 @@ REACT.TABLE_RENDER = {
 	init:function(){
 		this.setComponent();
 		this.combineComponent();
-		this.rendering();
+		this.renderingDom();
 	},
 	setComponent:function(){
 		var _self = this;
+		//親コンポーネント
+		this.ContactTable = React.createClass({
+			render:function(){
+				return (
+					<table>
+						{this.props.children}
+					</table>
+				);
+			}
+		});
+
 		//子コンポーネント
-		this.TableHeader = React.createClass({
+		this.ContactTable.Header = React.createClass({
 		  render: function() {
 		    var tableTitles = this.props.title.map(function(cName, i) {
 		      return (
@@ -36,7 +47,7 @@ REACT.TABLE_RENDER = {
 		  }
 		});
 		//子コンポーネント
-		this.TableBody = React.createClass({
+		this.ContactTable.Body = React.createClass({
 		  render: function() {
 		    var tableRows = this.props.data.map(function(person) {
 		      return (
@@ -47,7 +58,7 @@ REACT.TABLE_RENDER = {
 		      	</tr>
 					);
 		    });
-				
+
 			    return (
 						<tbody>
 			      	{tableRows}
@@ -63,15 +74,15 @@ REACT.TABLE_RENDER = {
 		this.DispTable = React.createClass({
 		  render: function() {
 		    return (
-					<table className="regularTable">
-			      <_self.TableHeader title={this.props.title}/>
-			      <_self.TableBody data={this.props.data}/>
-		    	</table>
+					<_self.ContactTable className="regularTable">
+			      <_self.ContactTable.Header title={this.props.title}/>
+			      <_self.ContactTable.Body data={this.props.data}/>
+		    	</_self.ContactTable>
 				);
 		  }
 		});
 	},
-	rendering:function(){
+	renderingDom:function(){
 		var _self = this;
 		ReactDOM.render(
 		  <this.DispTable title={tableColumns} data={tableData}/>,
