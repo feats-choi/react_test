@@ -15,9 +15,26 @@ REACT.TABLE_RENDER = {
 	},
 	setComponent:function(){
 		var _self = this;
+		var starttime = Date.now();
+
+		//Mixin
+		this.MonitorLifeCycleMixin = {
+			componentDidMount:function(){
+				console.log('componentDidMount:',this.constructor.displayName);
+			},
+			componentWillReceiveProps:function(nextProps){
+				console.log('componentWillReactiveProps:',nextProps);
+			},
+			showElapsed:function(constructorName){
+				console.log(constructorName,Date.now() - starttime);
+			}
+		};
+
 		//親コンポーネント
 		this.ContactTable = React.createClass({
+			mixins:[_self.MonitorLifeCycleMixin],
 			render:function(){
+				_self.MonitorLifeCycleMixin.showElapsed(this.constructor.displayName);
 				return (
 					<table>
 						{this.props.children}
@@ -28,6 +45,7 @@ REACT.TABLE_RENDER = {
 
 		//子コンポーネント
 		this.ContactTable.Header = React.createClass({
+			mixins:[_self.MonitorLifeCycleMixin],
 		  render: function() {
 		    var tableTitles = this.props.title.map(function(cName, i) {
 		      return (
@@ -36,7 +54,7 @@ REACT.TABLE_RENDER = {
 		      	</th>
 					);
 		    });
-
+				_self.MonitorLifeCycleMixin.showElapsed(this.constructor.displayName);
 			    return (
 						<thead>
 			      <tr>
@@ -48,6 +66,7 @@ REACT.TABLE_RENDER = {
 		});
 		//子コンポーネント
 		this.ContactTable.Body = React.createClass({
+			mixins:[_self.MonitorLifeCycleMixin],
 		  render: function() {
 		    var tableRows = this.props.data.map(function(person) {
 		      return (
@@ -58,7 +77,7 @@ REACT.TABLE_RENDER = {
 		      	</tr>
 					);
 		    });
-
+				_self.MonitorLifeCycleMixin.showElapsed(this.constructor.displayName);
 			    return (
 						<tbody>
 			      	{tableRows}
@@ -70,9 +89,11 @@ REACT.TABLE_RENDER = {
 	},
 	combineComponent:function(){
 		var _self = this;
-		//親コンポーネント
+
 		this.DispTable = React.createClass({
+			mixins:[_self.MonitorLifeCycleMixin],
 		  render: function() {
+				_self.MonitorLifeCycleMixin.showElapsed(this.constructor.displayName);
 		    return (
 					<_self.ContactTable className="regularTable">
 			      <_self.ContactTable.Header title={this.props.title}/>
