@@ -1,3 +1,1 @@
-'use strict';
-
-console.log('通過');
+"use strict";

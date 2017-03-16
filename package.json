@@ -17,8 +17,11 @@
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-babel": "^6.1.2",
+    "gulp-jsx": "^2.0.1",
     "gulp-plumber": "^1.1.0",
-    "gulp-stylus": "^2.6.0"
+    "gulp-stylus": "^2.6.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   },
   "description": ""
 }
