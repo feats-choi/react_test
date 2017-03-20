@@ -8,13 +8,13 @@ var autoprefixer = require("gulp-autoprefixer");
 var plumber = require("gulp-plumber");
 /*--------------- path ---------------*/
 var paths = {
-    buildDir:'build',
-		srcDir: 'src'
+    buildDir:'./build',
+		srcDir: './src'
 };
 
 /*------------- stylus_task -------------*/
 gulp.task('stylus',function(){
-	var buildGolb = paths.buildDir + 'stylus/*.styl';
+	var buildGolb = paths.buildDir + '/stylus/*.styl';
 	var srcGolb = paths.srcDir + '/css';
 
 	gulp.src(buildGolb)

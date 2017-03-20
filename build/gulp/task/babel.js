@@ -7,12 +7,12 @@ var babel = require("gulp-babel");
 var plumber = require("gulp-plumber");
 /*--------------- path ---------------*/
 var paths = {
-    buildDir:'build',
-		srcDir: 'src'
+    buildDir:'./build',
+		srcDir: './src'
 };
 
 gulp.task('babel',function(){
-	var buildGolb = paths.buildDir + 'es6/*.es6';
+	var buildGolb = paths.buildDir + '/es6/*.es6';
 	var srcGolb = paths.srcDir + '/js';
 
 	gulp.src(buildGolb)
