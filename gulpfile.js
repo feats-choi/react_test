@@ -1,52 +1,28 @@
 var gulp = require("gulp");
-
-/*--------------- css ---------------*/
-var stylus = require("gulp-stylus");
-var autoprefixer = require("gulp-autoprefixer");
-
-/*----------- javascript ------------*/
-var babel = require("gulp-babel");
-// var jsx = require("gulp-jsx");
-
-/*---------- error_handring ----------*/
-var plumber = require("gulp-plumber");
+var requireDir = require('require-dir');
+var dir = requireDir('./build/gulp/tasks',{recurse: true});
+var path = require("path");
 
 /*--------------- path ---------------*/
 var paths = {
-    stylus: ['./build/stylus/*','!./build/stylus/_*'],
-		stylus_base: ['./src/css/']
+    buildDir:'build',
+		srcDir: 'src'
 };
-
-/*--------------- Main_task ---------------*/
-gulp.task('default',['stylus','watch']);
 
 /*----------------- watch -----------------*/
 gulp.task('watch',function(){
-	// gulp.watch('./build/es6/*.es6',['babel'])
-	gulp.watch('./build/stylus/*.styl',['stylus'])
+  var ejsWatch = paths.buildDir + '/ejs/*.ejs';
+  var stylusWatch = paths.buildDir + '/stylus/*.styl';
+  var babelWatch = paths.buildDir + '/babel/*.es6';
+
+  console.log(ejsWatch);
+  console.log(stylusWatch);
+  console.log(babelWatch);
+
+  gulp.watch(ejsWatch,['ejs'])
+	gulp.watch(stylusWatch,['stylus'])
+  gulp.watch(babelWatch,['babel'])
 });
 
-gulp.task('stylus',function(){
-	gulp.src(paths.stylus)
-			.pipe(plumber())
-			.pipe(stylus())
-			.pipe(autoprefixer())
-			.pipe(gulp.dest('./src/css/'))
-});
-
-// gulp.task('babel',function(){
-// 	gulp.src('./build/es6/*es6')
-// 			.pipe(plumber())
-// 			.pipe(babel({
-//     			presets: ['es2015']
-// 			}))
-// 			.pipe(gulp.dest('./src/js/'))
-// });
-
-// gulp.task('jsx',function(){
-// 	return gulp.src('./src/js/*.js')
-// 			.pipe(jsx({
-// 				factory: 'React.createClass'
-// 			}))
-// 			.pipe(gulp.dest('./src/jsx/'));
-// });
+/*--------------- default_task ---------------*/
+gulp.task('default',['ejs','stylus','babel','watch']);
