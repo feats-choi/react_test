@@ -12,7 +12,7 @@ var paths = {
 };
 
 gulp.task('babel',function(){
-	var buildGolb = paths.buildDir + '/es6/*.es6';
+	var buildGolb = paths.buildDir + '/es6/*.js';
 	var srcGolb = paths.srcDir + '/js';
 
 	gulp.src(buildGolb)

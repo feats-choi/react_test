@@ -2,6 +2,8 @@ p {
   padding: 10px;
   border-top: 3px;
   background-color: #000;
+  background-position: left;
+  margin: 10px;
 }
 h1 {
   padding: 10px;

@@ -14,7 +14,7 @@ var paths = {
 
 /*------------- stylus_task -------------*/
 gulp.task('stylus',function(){
-	var buildGolb = paths.buildDir + '/stylus/*.styl';
+	var buildGolb = [paths.buildDir + '/stylus/*.styl','!' + paths.buildDir + '/stylus/_*.styl'];
 	var srcGolb = paths.srcDir + '/css';
 
 	gulp.src(buildGolb)

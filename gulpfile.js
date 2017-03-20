@@ -4,7 +4,7 @@ var stylus = require("gulp-stylus");
 var babel = require("gulp-babel");
 
 var requireDir = require('require-dir');
-var dir = requireDir('build/gulp/task',{recurse: true});
+var dir = requireDir('gulp_task/task',{recurse: true});
 var path = require("path");
 
 /*--------------- path ---------------*/
@@ -17,7 +17,7 @@ var paths = {
 gulp.task('watch',function(){
   var ejsWatch = paths.buildDir + '/ejs/*.ejs';
   var stylusWatch = paths.buildDir + '/stylus/*.styl';
-  var babelWatch = paths.buildDir + '/es6/*.es6';
+  var babelWatch = paths.buildDir + '/es6/*.js';
 
   gulp.watch(ejsWatch,['ejs'])
 	gulp.watch(stylusWatch,['stylus'])
